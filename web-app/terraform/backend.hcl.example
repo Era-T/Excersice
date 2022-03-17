@@ -1,4 +1,0 @@
-workspaces { prefix = "devops-training" }
-hostname     = "app.terraform.io"
-organization = "appstellar"
-token = ""
