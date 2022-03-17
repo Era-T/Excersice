@@ -24,6 +24,6 @@ jobs:
       working-directory: web-app
       env:
        IMAGE_TAG: ${{ github.sha }}
-      run: 
+      run: |
         docker build . --file Dockerfile --tag 41632/excersice:$IMAGE_TAG
-        docker push 41632/excersice:$(date +%s)
+        docker push 41632/excersice:$IMAGE_TAG
