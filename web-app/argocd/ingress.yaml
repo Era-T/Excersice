@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd
+  namespace: argocd
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/certificate-arn:  arn:aws:acm:eu-central-1:313422618945:certificate/1f6ee2d8-734a-48ff-a4be-1a3b3d890bc4
+    alb.ingress.kubernetes.io/tags: Name=appstellar-training-alb-dev, Environment=dev
+    alb.ingress.kubernetes.io/group.name: appstellar-training
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/name: argocd-server
+    app.kubernetes.io/part-of: argocd
+spec:
+  # ingressClassName: "nginx"
+  rules:
+  - host: argocd.appstellar.training
+    http:
+      paths:
+      - path: ""
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: argocd-server
+            port: 
+              number: 80
