@@ -19,7 +19,10 @@ jobs:
       with:
        username: 41632
        password: ${{ secrets.DOCKER_HUB_PASSWORD}}
+
     - name: Build the Docker image
       working-directory: web-app
 
-      run: docker build . --file Dockerfile --tag 41632/excersice:$(date +%s)
+      run: 
+        docker build . --file Dockerfile --tag 41632/excersice:$(date +%s)
+        docker push 41632/excersice:$(date +%s)
