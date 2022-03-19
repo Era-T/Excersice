@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: 313422618945.dkr.ecr.eu-central-1.amazonaws.com/devops-kubernetes-training-api
+  repository: 41632/excersice
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
@@ -15,13 +15,6 @@ nameOverride: ""
 fullnameOverride: ""
 
 
-env:
-- name: NODE_ENV
-  value: "development"
-- name: PORT
-  value: "3000"
-- name: TITLE
-  value: "DevOps and Kubernetes Fundamentals - DEV"
 
 
 
@@ -67,7 +60,7 @@ ingress:
     - host: era-tahiri.web.appstellar.training
       paths:
         - path: /
-          pathType: ImplementationSpecific
+          pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
